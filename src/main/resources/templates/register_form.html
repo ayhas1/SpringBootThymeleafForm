@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <style type="text/css">
+        label{
+            display: inline-block;
+            width: 200px;
+            margin: 10px;
+            text-align: left;
+        }
+        button{
+            margin: 20px;
+            padding: 10px;
+        }
+        input[type=text], input[type=password], select{
+            display: inline-block;
+            width: 200px;
+        }
+        input[type=checkbox]{
+            margin-right: 190px;
+        }
+    </style>
+</head>
+<body>
+    <div style="text-align:center;">
+        <h1>User Registration</h1>
+        <form th:action="@{/register}" method="post">
+            <label>Full Name:</label>
+            <input th:text="${user.name}"/><br/>
+            <label>Email:</label>
+            <input type="text" th:field="${user.email}"/><br/>
+            <label>Password:</label>
+            <input type="password" th:field="${user.password}"/><br/>
+            <label>Birthday date (yyyy-mm-dd):</label>
+            <input type="text" th:field="${user.birthday}"/><br/>
+            <label>Profession:</label>
+            <select th:field="${user.profession}">
+                <option th:each="p : ${professionList}" th:value="${p}" th:text="${p}"/>
+            </select>
+            <br/>
+            <label>Married?</label>
+            <input type="checkbox" th:field="${user.married}"/><br/>
+            <label>Gender</label>
+            <input type="radio" th:field="${user.gender}" th:value="Male">Male
+            <input type="radio" th:field="${user.gender}" th:value="Female">Female<br/>
+            <label>Note:</label>
+            <textarea th:rows="5" th:cols="25" th:field="${user.note}"></textarea>
+            <br/>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</body>
+</html>
